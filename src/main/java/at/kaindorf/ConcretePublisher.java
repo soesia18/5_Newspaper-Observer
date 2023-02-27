@@ -1,7 +1,9 @@
 package at.kaindorf;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <h3>Created by IntelliJ IDEA.</h3><br>
@@ -11,8 +13,11 @@ import java.util.List;
  * <b>Time:</b> 12:21<br>
  */
 
-public class KleineZeitung implements Publisher {
-    private List<Reader> readers = new ArrayList<>();
+public class ConcretePublisher implements Publisher {
+    private Set<Reader> readers = new HashSet<>();
+
+    public ConcretePublisher() {
+    }
     @Override
     public void register(Reader reader) {
         readers.add(reader);
@@ -25,6 +30,6 @@ public class KleineZeitung implements Publisher {
 
     @Override
     public void notifyReaders() {
-
+        readers.forEach(reader -> reader.update("news"));
     }
 }
